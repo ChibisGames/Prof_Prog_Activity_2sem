@@ -29,18 +29,11 @@ class WebSummarizer:
         """
     
     def _init_llm(self):
-        """Инициализация модели с настройками для суммаризации"""
         config = {
-            "temperature": 0.2,  # Более консервативные ответы
+            "temperature": 0.2,  # its should be strict and precise
             "base_url": "http://localhost:11434",
             "max_tokens": 500
         }
-        
-        # Специфичные настройки
-        if "llama" in self.model_name.lower():
-            config["temperature"] = 0.3
-        elif "qwen" in self.model_name.lower():
-            config["top_p"] = 0.9
             
         return ChatOllama(model=self.model_name, **config)
     
