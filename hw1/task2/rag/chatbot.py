@@ -35,19 +35,12 @@ class ChatBot:
         self.chain = self.build_chain()
     
     def _init_llm(self):
-        """Инициализация языковой модели с настройками для разных моделей"""
-        model_config = {
-            "temperature": 0.3,
+        config = {
+            "temperature": 0.7, # balance between creativity and correctness
             "base_url": "http://localhost:11434"
         }
-        
-        # Специфичные настройки для разных моделей
-        if "llama" in self.model_name.lower():
-            model_config["temperature"] = 0.7
-        elif "qwen" in self.model_name.lower():
-            model_config["temperature"] = 0.5
             
-        return ChatOllama(model=self.model_name, **model_config)
+        return ChatOllama(model=self.model_name, **config)
     
     def build_chain(self):
         """Сборка цепочки для вопросно-ответной системы"""
