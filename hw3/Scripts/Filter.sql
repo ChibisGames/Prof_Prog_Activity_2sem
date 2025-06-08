@@ -1,0 +1,1 @@
+select * from creditcard c where c.cardtype = 'Vista' order by c.expmonth 
